@@ -39,7 +39,7 @@ public class Apns {
     }
 
     private static ContentValues apnItemToContentValues(ApnItem i, CarrierId protoCarrierId) {
-        var cv = new ContentValues();
+        ContentValues cv = new ContentValues();
         cv.put(Telephony.Carriers.APN, i.getValue());
         cv.put(Telephony.Carriers.NAME, i.getName());
 
@@ -114,9 +114,6 @@ public class Apns {
 
         int lntBitmask = i.hasLingeringNetworkTypeBitmask() ?
                 parseBitmaskString(i.getLingeringNetworkTypeBitmask()) : 0;
-        cv.put(Telephony.Carriers.LINGERING_NETWORK_TYPE_BITMASK, lntBitmask);
-        cv.put(Telephony.Carriers.ALWAYS_ON, i.getAlwaysOn());
-        cv.put(Telephony.Carriers.MTU_V6, i.getMtuV6());
 
         return cv;
     }
@@ -164,7 +161,7 @@ public class Apns {
     private static List<ContentValues> getApnContentValues(CSettings cs) {
         List<ApnItem> list = cs.protoCSettings.getApns().getApnList();
 
-        var result = new ArrayList<ContentValues>(list.size());
+        ArrayList result = new ArrayList<ContentValues>(list.size());
 
         for (ApnItem apnItem : list) {
             result.add(apnItemToContentValues(apnItem, cs.carrierId2.protoCarrierId));
@@ -185,7 +182,7 @@ public class Apns {
     }
 
     private static String typesListToString(List<ApnItem.ApnType> list) {
-        var b = new StringBuilder(list.size() * 5);
+        StringBuilder b = new StringBuilder(list.size() * 5);
         boolean skipComma = true;
 
         for (ApnItem.ApnType apnType : list) {

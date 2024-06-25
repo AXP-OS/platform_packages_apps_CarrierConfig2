@@ -65,7 +65,7 @@ public class CarrierConfigLoader {
 
         CSettings defaults = CSettings.get(csd, DEFAULT_CARRIER_ID);
 
-        var bundle = new PersistableBundle();
+        PersistableBundle bundle = new PersistableBundle();
         if (defaults != null) {
             // settings for default carrier ID are used as a base, carrier-specific settings are
             // applied on top
@@ -89,7 +89,7 @@ public class CarrierConfigLoader {
 
     private PersistableBundle carrierConfigToBundle(CarrierConfig cc) {
         List<CarrierConfig.Config> configs = cc.getConfigList();
-        var bundle = new PersistableBundle(configs.size());
+        PersistableBundle bundle = new PersistableBundle(configs.size());
 
         String TAG = "carrierConfigToBundle";
 
@@ -174,7 +174,7 @@ public class CarrierConfigLoader {
     private void storeApnCSettingsVersion(CSettings cs) {
         String k = cs.carrierId2.canonicalName;
         SharedPreferences p = Prefs.get(context, Prefs.Namespace.APN_CSETTINGS_VERSIONS);
-        var ed = p.edit();
+        SharedPreferences.Editor ed = p.edit();
         if (p.getAll().size() > 100) {
             // remove old values
             ed.clear();
@@ -186,7 +186,7 @@ public class CarrierConfigLoader {
     private void addVersionString(CSettings cSettings, boolean isDefault, PersistableBundle dest) {
         CarrierSettings cs = cSettings.protoCSettings;
 
-        var b = new StringBuilder();
+        StringBuilder b = new StringBuilder();
         b.append(cs.getCanonicalName());
         b.append('-');
         b.append(cs.getVersion());

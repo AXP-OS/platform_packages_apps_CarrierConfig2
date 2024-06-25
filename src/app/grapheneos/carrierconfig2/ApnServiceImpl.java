@@ -21,7 +21,7 @@ public class ApnServiceImpl extends ApnService {
     public List<ContentValues> onRestoreApns(int subId) {
         Log.d(TAG, "onRestoreApns: subId " + subId);
 
-        var csd = CSettingsDir.getDefault();
+        CSettingsDir csd = CSettingsDir.getDefault();
         if (csd == null) {
             Log.e(TAG, "CSettingsDir is missing");
             return emptyList();

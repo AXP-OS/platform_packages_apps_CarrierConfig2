@@ -22,7 +22,7 @@ public class Utils {
             return null;
         }
 
-        var tm = ctx.getSystemService(TelephonyManager.class).createForSubscriptionId(subId);
+        TelephonyManager tm = ctx.getSystemService(TelephonyManager.class).createForSubscriptionId(subId);
         String simOperator = tm.getSimOperator();
 
         if (simOperator == null) {
@@ -46,13 +46,13 @@ public class Utils {
         String imsi = tm.getSubscriberId();
         String gid1 = tm.getGroupIdLevel1();
 
-        var res = new CarrierIdentifier(mcc, mnc, spn, imsi, gid1, null);
+        CarrierIdentifier res = new CarrierIdentifier(mcc, mnc, spn, imsi, gid1, null);
         Log.d(TAG, "subId " + subId + "; " + res);
         return res;
     }
 
     public static String printStackTraceToString(Throwable t) {
-        var baos = new ByteArrayOutputStream(1000);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream(1000);
         t.printStackTrace(new PrintStream(baos));
         return baos.toString();
     }

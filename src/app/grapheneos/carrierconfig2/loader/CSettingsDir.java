@@ -49,7 +49,7 @@ public class CSettingsDir {
     private static final CSettingsDir DEFAULT;
 
     static {
-        File dir = new File(Environment.getProductDirectory(), "etc/CarrierSettings");
+        File dir = new File(Environment.getProductDirectory(), "etc/CarrierSettings2");
         if (!dir.isDirectory()) {
             Log.e(TAG, "default dir is not available");
             DEFAULT = null;
